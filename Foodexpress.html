@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoodExpress Professional</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<aside class="sidebar">
+  <div class="brand"><div class="logo">FE</div><h1>Food<span>Express</span></h1></div>
+  <nav>
+    <button class="nav-btn active" onclick="showHome()">🏠 Startseite</button>
+    <button class="nav-btn" onclick="showRestaurants()">🍽️ Restaurants</button>
+    <button class="nav-btn" onclick="alertFavorites()">❤️ Favoriten</button>
+    <button class="nav-btn" onclick="alertOrders()">🧾 Bestellungen</button>
+    <button class="nav-btn" onclick="alertProfile()">👤 Profil</button>
+  </nav>
+  <div class="premium-card"><strong>FoodExpress Premium</strong><p>Gratis Lieferung & exklusive Rabatte.</p><span>Gutschein: SCHULE10</span></div>
+</aside>
+
+<main class="page">
+  <header class="topbar">
+    <div><h2 id="pageTitle">Startseite</h2><p id="pageSubtitle">Bestelle Essen modern, schnell und einfach.</p></div>
+    <div class="top-actions"><span id="userLabel"></span><button id="logoutBtn" class="secondary hidden" onclick="logout()">Abmelden</button></div>
+  </header>
+
+  <section id="authSection" class="auth-grid">
+    <div class="hero"><span class="badge">FoodExpress Professional</span><h1>Dein Lieblingsessen schnell geliefert.</h1><p>4 Restaurants, Dark Design, Warenkorb, Login und Bewertungen.</p><div class="hero-actions"><button onclick="demoLogin()">Demo Login</button><button class="secondary" onclick="document.getElementById('loginBox').scrollIntoView({behavior:'smooth'})">Einloggen</button></div></div>
+    <div class="auth-card" id="loginBox">
+      <h3>Anmelden</h3><input id="loginUser" placeholder="Benutzername"><input id="loginPass" type="password" placeholder="Passwort"><button onclick="login()">Einloggen</button><p id="loginMsg"></p><hr>
+      <h3>Registrieren</h3><input id="registerUser" placeholder="Benutzername"><input id="registerPass" type="password" placeholder="Passwort"><button onclick="registerAccount()">Account erstellen</button><p id="registerMsg"></p>
+    </div>
+  </section>
+
+  <section id="appSection" class="app hidden">
+    <section class="restaurant-column">
+      <input id="searchInput" oninput="renderRestaurants();renderRecommendations()" placeholder="Restaurant oder Gericht suchen...">
+      <div class="filters">
+        <button class="filter active" onclick="setFilter('Alle', event)">Alle</button>
+        <button class="filter" onclick="setFilter('Italienisch', event)">Italienisch</button>
+        <button class="filter" onclick="setFilter('Burger', event)">Burger</button>
+        <button class="filter" onclick="setFilter('Asiatisch', event)">Asiatisch</button>
+        <button class="filter" onclick="setFilter('Healthy', event)">Healthy</button>
+      </div>
+      <h3>Restaurants</h3><div id="restaurantList"></div>
+    </section>
+    <section class="content-column">
+      <section id="homeView"><div class="welcome-card"><h2>Willkommen bei FoodExpress 👋</h2><p>Wähle ein Restaurant oder füge direkt ein beliebtes Gericht hinzu.</p></div><h3>Beliebte Gerichte</h3><div id="recommendations" class="recommendation-grid"></div></section>
+      <section id="restaurantView" class="hidden"><div id="restaurantHero" class="restaurant-hero"></div><div id="categoryTabs" class="tabs"></div><div id="menuList" class="menu-list"></div><div class="reviews"><h2>Bewertungen</h2><div id="reviewList"></div><h3>Bewertung abgeben</h3><select id="ratingSelect"><option value="5">★★★★★ 5 Sterne</option><option value="4">★★★★☆ 4 Sterne</option><option value="3">★★★☆☆ 3 Sterne</option><option value="2">★★☆☆☆ 2 Sterne</option><option value="1">★☆☆☆☆ 1 Stern</option></select><textarea id="reviewText" placeholder="Deine Bewertung"></textarea><button onclick="addReview()">Bewertung speichern</button></div></section>
+    </section>
+    <aside class="cart-column">
+      <h2>Warenkorb</h2><ul id="cartList"></ul><input id="voucherInput" placeholder="Gutscheincode: SCHULE10"><button onclick="applyVoucher()">Gutschein einlösen</button>
+      <div class="summary"><div><span>Zwischensumme</span><strong id="subtotal">0,00 €</strong></div><div><span>Lieferung</span><strong id="deliveryFee">0,00 €</strong></div><div><span>Rabatt</span><strong id="discount">0,00 €</strong></div><div class="total"><span>Gesamt</span><strong id="totalPrice">0,00 €</strong></div></div>
+      <button class="checkout" onclick="checkout()">Zur Kasse</button><p id="orderMsg"></p>
+      <div class="trust"><p>🛡️ Sichere Bezahlung</p><p>🚚 Schnelle Lieferung</p><p>⭐ Echte Bewertungen</p></div>
+    </aside>
+  </section>
+</main>
+<script src="js/app.js"></script>
+</body>
+</html>
